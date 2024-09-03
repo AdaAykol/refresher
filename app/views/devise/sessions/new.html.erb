@@ -1,0 +1,52 @@
+<div class="container home-sections d-flex flex-row justify-content-center align-items-center">
+  <div class="images-section pt-3 d-none d-lg-block"></div>
+
+  <div class="login-section pt-3">
+    <div class="card text-center pt-5" style="width: 23rem;">
+      <%= image_tag 'logo.png', class: "card-img-top" %>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="mt-4 mb-3">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", type: "email", class: "form-control", id: "email", placeholder: "Phone number, username, or email" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password, autocomplete: "current-password", type: "password", class: "form-control", id: "password", placeholder: "Password" %>
+          </div>
+          <%= f.submit "Log in", class: "w-100 btn btn-primary " %>
+  
+        <% end %>
+        <div class="align-items-center mt-4">
+          <div class="row">
+            <div class="col"><hr/></div>
+            <h2 class="col-auto line-text my-auto">OR</h2>
+            <div class="col line"><hr/></div>
+          </div>
+        </div>
+
+        <a href="#" class="d-block mt-4 text-decoration-none fw-bold">
+          <%= image_tag('facebook.png', class: "facebook") %>
+          Log in with Facebook
+        </a>
+        
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% elsif alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+
+        <a href="#" class="fs-6 d-block my-4 text-decoration-none">Forgot Password?</a>
+      </div>
+    </div>
+    
+    <div class="card text-center py-2 mt-3" style="width: 23rem;">
+      <div class="card-text">
+        Don't have an account?
+        <%= link_to "Sign Up", new_user_registration_path, class: "fs-6 my-4 text-decoration-none" %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

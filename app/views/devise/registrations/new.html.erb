@@ -1,0 +1,62 @@
+<div class="container home-sections d-flex flex-row justify-content-center align-items-center">
+  <div class="login-section pt-3">
+    <div class="card text-center pt-5 mx-auto" style="width: 23rem;">
+      <%= image_tag 'logo.png', class: "card-img-top" %>
+      <p class="mt-2 w-75 fs-6 fw-bold text-secondary align-self-center"> Sign Up to see photos and videos from your friends. </p>      
+      <a href="#" class="d-block mt-4 text-decoration-none fw-bold bg-primary text-white rounded w-75 align-self-center p-2">
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <%= image_tag('facebook.png', class: "facebook") %>
+          Log in with Facebook
+        </div>
+      </a>
+      <div class="align-items-center mt-4">
+        <div class="row">
+          <div class="col"><hr/></div>
+          <h2 class="col-auto line-text my-auto">OR</h2>
+          <div class="col line"><hr/></div>
+        </div>
+      </div>
+        
+
+
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="mt-4 mb-3">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", type: "email", class: "form-control", id: "email", placeholder: "Phone number or email" %>
+          </div>
+          <div class="mb-3">
+            <%= f.text_field :full_name, class: "form-control", placeholder: "fullname" %>
+          </div>
+          <div class="mb-3">
+            <%= f.text_field :username,  class: "form-control", placeholder: "Username" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password,  class: "form-control", placeholder: "Password" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+          </div>
+          <%= f.submit "Sign Up", class: "w-100 btn btn-primary " %>
+        <% end %>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% elsif alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="card text-center py-2 mt-3 mx-auto" style="width: 23rem;">
+      <div class="card-text">
+        have an account?
+        <%= link_to 'Sign in', new_user_session_path, class:"fs-6 my-4 text-decoration-none text-color-info" %> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

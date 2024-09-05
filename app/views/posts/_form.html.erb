@@ -25,12 +25,7 @@
     <%= form.label :latitude, style: "display: block" %>
     <%= form.text_field :latitude %>
   </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
+  
   <div>
     <%= form.label :allow_comments, style: "display: block" %>
     <%= form.check_box :allow_comments %>
@@ -39,6 +34,11 @@
   <div>
     <%= form.label :show_likes_counter, style: "display: block" %>
     <%= form.check_box :show_likes_counter %>
+  </div>
+
+  <div>
+    <%= form.label :images, style: "display: block" %>
+    <%= form.file_field :images, multiple: true %>
   </div>
 
   <div>

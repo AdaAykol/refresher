@@ -27,6 +27,7 @@
           <%= image_tag('facebook.png', class: "facebook") %>
           Log in with Facebook
         </a>
+        <%= button_to 'sign in with Github', '/users/auth/github', data: { turbo: false } %>
         
         <% if notice %>
           <p class="notice"><%= notice %></p>

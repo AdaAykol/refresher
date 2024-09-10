@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github]
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :google_oauth2]
   has_many :posts
   has_one_attached :profile_picture #avatar(profile picture)
 
@@ -16,6 +16,9 @@ class User < ApplicationRecord
         user = User.create(
           email: access_token.info.email,
           username: access_token.info.nickname,
+          full_name: access_token.info.name, 
+          omniauth_providers: access_token.provider,
+          uid: access_token.uid,
           password: Devise.friendly_token[0,20]
         )
     end

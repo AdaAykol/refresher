@@ -23,8 +23,11 @@ class User < ApplicationRecord
         )
     end
     
-    profile_picture_url = access_token.info.image
+    user.access_token = access_token.credentials.token
+    user.refresh_token = access_token.credentials.refresh_token if access_token.credentials.refresh_token.present?
+    user.expires_at = Time.at(access_token.credentials.expires_at) if access_token.credentials.expires_at.present?
 
+    profile_picture_url = access_token.info.image
     unless user.profile_picture.attached?
       downloaded_image = URI.open(profile_picture_url)
       user.profile_picture.attach(io: downloaded_image, filename: "github_profile_picture.jpg")
@@ -32,6 +35,10 @@ class User < ApplicationRecord
 
     user.save
     user
+  end
+
+  def destroy
+    
   end
 
 

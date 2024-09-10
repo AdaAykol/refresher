@@ -23,12 +23,20 @@
           </div>
         </div>
 
-        <a href="#" class="d-block mt-4 text-decoration-none fw-bold">
-          <%= image_tag('facebook.png', class: "facebook") %>
-          Log in with Facebook
-        </a>
-        <%= button_to 'sign in with Github', user_github_omniauth_authorize_path, data: { turbo: false } %>
-        <%= button_to 'Login with Google', user_google_oauth2_omniauth_authorize_path, data: {turbo: false} %>
+        <%= button_to user_github_omniauth_authorize_path, data: { turbo: false }, class: "oauth-provider-buttons my-auto" do %>
+          <div class="d-flex justify-content-center align-items-center py-1">
+            <%= image_tag('Github.png', class: "oauth-provider-logos") %>
+            Log in with Github
+          </div>
+        <% end %>
+
+        <%= button_to user_google_oauth2_omniauth_authorize_path, data: {turbo: false}, class: "oauth-provider-buttons my-auto" do %>
+          <div class="d-flex justify-content-center align-items-center py-1">
+            <%= image_tag('Google.png', class: "oauth-provider-logos") %>
+            Log in with Google
+          </div>
+        <% end %>
+
         <% if notice %>
           <p class="notice"><%= notice %></p>
         <% elsif alert %>

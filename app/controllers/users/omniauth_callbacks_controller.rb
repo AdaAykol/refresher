@@ -37,4 +37,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
     end
   end
+
+  def vanadium
+    @user = User.from_omniauth(request.env['omniauth.auth'])
+
+    if @user.persisted?
+      sign_in_and_redirect @user
+    else
+      session['devise.vanadium_data'] = request.env['omniauth.auth']
+      redirect_to new_user_registration_url
+    end
+  end
 end

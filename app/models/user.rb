@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :google_oauth2]
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :google_oauth2, :vanadium]
   has_many :posts
   has_one_attached :profile_picture #avatar(profile picture)
 
@@ -23,12 +23,12 @@ class User < ApplicationRecord
         )
     end
     
-    profile_picture_url = access_token.info.image
+    # profile_picture_url = access_token.info.image
 
-    unless user.profile_picture.attached?
-      downloaded_image = URI.open(profile_picture_url)
-      user.profile_picture.attach(io: downloaded_image, filename: "github_profile_picture.jpg")
-    end
+    # unless user.profile_picture.attached? && user.profile_picture.present?
+    #   downloaded_image = URI.open(profile_picture_url)
+    #   user.profile_picture.attach(io: downloaded_image, filename: "github_profile_picture.jpg")
+    # end
 
     user.save
     user

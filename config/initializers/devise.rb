@@ -292,23 +292,38 @@ Devise.setup do |config|
   config.omniauth :github, 'Ov23liPeXUxD2yjdANYY', '3f2b34070bbac3f9beb3a11143bd7604c3ba6065', scope: "user:email"
   config.omniauth :google_oauth2, '1080163831925-3ackqlnltf1crlf3optav762jcr58ipo.apps.googleusercontent.com', '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', {}
 
-
-  Devise.setup do |config|
-      config.omniauth: openid_connect, {
-            name: :vanadium,  
-            scope: [:openid, :profile, :email, :phone, :address, :user_trusted_info, :api],
-            response_type: :code,
-            client_options: {
-              identifier: 'SHnaMuQXZGKEDPQEJniJbmKEhG6C3VFCJGYOjpTQ_y0',  # Client ID from Vanadium
-              secret: 'gvm3QCsB23axLoMKE25O9UDU9x0pKz1eaxN0TLwahaY',  # Secret from Vanadium
-              redirect_uri: 'http://localhost:3002/users/sign_in',
-              host: 'http://vanadium.localdev.me:3000',
-              authorization_endpoint: '/oauth/authorize',
-              token_endpoint: '/oauth/token',
-              userinfo_endpoint: '/oauth/userinfo'
-            }
+  # RESEARCH WHY THIS WAS NOT WORKING
+  # 
+  # Devise.setup do |config|
+  #     config.omniauth :oauth2, {
+  #       name: :vanadium,  # Label, but the actual strategy is OAuth 2.0
+  #       client_id: 'SHnaMuQXZGKEDPQEJniJbmKEhG6C3VFCJGYOjpTQ_y0',
+  #       client_secret: 'gvm3QCsB23axLoMKE25O9UDU9x0pKz1eaxN0TLwahaY',
+  #       cliend_options: {
+  #         site: 'http://vanadium.localdev.me:3000',  # Vanadium OAuth provider's base URL
+  #         authorize_url: '/oauth/authorize',  # Corrected path with leading '/'
+  #         token_url: '/oauth/token',
+  #         scope: 'openid profile email'
+  #         }
+  #       }
+  #   end
+    
+    
+    Devise.setup do |config|
+      config.omniauth :oauth2, 'SHnaMuQXZGKEDPQEJniJbmKEhG6C3VFCJGYOjpTQ_y0', 'gvm3QCsB23axLoMKE25O9UDU9x0pKz1eaxN0TLwahaY', {
+        name: 'vanadium',
+        client_options: {
+          site: 'http://vanadium.localdev.me:3000',
+          authorize_url: '/oauth/authorize',
+          token_url: '/oauth/token'
+        },
+        scope: 'openid profile email',
+        redirect_uri: 'http://localhost:3001/users/auth/vanadium/callback'
       }
-end
+    end
+    
+    
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

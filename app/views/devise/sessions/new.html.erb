@@ -29,6 +29,8 @@
         </a>
         <%= button_to 'sign in with Github', user_github_omniauth_authorize_path, data: { turbo: false } %>
         <%= button_to 'Login with Google', user_google_oauth2_omniauth_authorize_path, data: {turbo: false} %>
+        <%= button_to 'Login with vanadium', user_vanadium_omniauth_authorize_path, data: {turbo: false} %>
+
         <% if notice %>
           <p class="notice"><%= notice %></p>
         <% elsif alert %>

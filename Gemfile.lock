@@ -107,6 +107,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    domain_name (0.6.20240107)
     erubi (1.13.0)
     execjs (2.9.1)
     faraday (2.11.0)
@@ -120,6 +121,9 @@ GEM
       bigdecimal
       rake (>= 13)
     hashie (5.0.0)
+    http-accept (1.7.0)
+    http-cookie (1.0.7)
+      domain_name (~> 0.5)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.5)
@@ -145,6 +149,9 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.0.0)
+    mime-types (3.5.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2024.0903)
     mini_mime (1.1.5)
     minitest (5.25.1)
     msgpack (1.7.2)
@@ -161,6 +168,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
+    netrc (0.11.0)
     nio4r (2.7.3)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
@@ -236,6 +244,11 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rexml (3.2.5)
     rubyzip (2.3.2)
     sass-embedded (1.77.8)
@@ -302,12 +315,15 @@ DEPENDENCIES
   devise
   importmap-rails
   jbuilder
+  jwt
+  omniauth
   omniauth-github (~> 2.0.0)
   omniauth-google-oauth2
   omniauth-oauth2
   omniauth-rails_csrf_protection
   puma (~> 5.0)
   rails (~> 7.0.4)
+  rest-client
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)

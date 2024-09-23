@@ -308,19 +308,19 @@ Devise.setup do |config|
   #       }
   #   end
     
-    
-    Devise.setup do |config|
+
       config.omniauth :oauth2, 'SHnaMuQXZGKEDPQEJniJbmKEhG6C3VFCJGYOjpTQ_y0', 'gvm3QCsB23axLoMKE25O9UDU9x0pKz1eaxN0TLwahaY', {
-        name: 'vanadium',
+        scope: 'email profile openid',
+        name: :vanadium,
         client_options: {
           site: 'http://vanadium.localdev.me:3000',
           authorize_url: '/oauth/authorize',
-          token_url: '/oauth/token'
+          token_url: '/oauth/token',
         },
-        scope: 'openid profile email',
         redirect_uri: 'http://localhost:3001/users/auth/vanadium/callback'
       }
-    end
+ 
+  
     
     
 
